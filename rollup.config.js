@@ -12,12 +12,12 @@ const {
 
 export default [
   {
-    input: ['src/index.ts', 'src/rest.ts', 'src/graphql.ts'],
+    input: ['tree-shaked.js'],
     output: [
       {
         entryFileNames: '[name].js',
         chunkFileNames: '[name].js',
-        dir: 'lib/esm',
+        dir: 'lib/tree',
         format: 'esm',
       },
     ],
@@ -27,16 +27,7 @@ export default [
         preferBuiltins: false,
         mainFields: ['module', 'main', 'jsnext:main', 'browser'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      }),
-      integrityCheck({
-        checksumPlaceholder: '<INTEGRITY_CHECKSUM>',
-        input: SERVICE_WORKER_SOURCE_PATH,
-        output: SERVICE_WORKER_BUILD_PATH,
-      }),
-      typescript({
-        useTsconfigDeclarationDir: true,
-      }),
-      commonjs(),
+      })
     ],
   },
 ]
