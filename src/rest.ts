@@ -3,18 +3,18 @@ import {
   RequestHandler,
   ResponseResolver,
   MockedRequest,
-} from './requestHandler'
-import { Mask } from '../composeMocks/glossary'
-import { set } from '../context/set'
-import { status } from '../context/status'
-import { cookie } from '../context/cookie'
-import { body } from '../context/body'
-import { text } from '../context/text'
-import { json } from '../context/json'
-import { xml } from '../context/xml'
-import { delay } from '../context/delay'
-import { fetch } from '../context/fetch'
-import { resolveRelativeUrl } from '../utils/resolveRelativeUrl'
+} from './handlers/requestHandler'
+import { Mask } from './setupWorker/glossary'
+import { set } from './context/set'
+import { status } from './context/status'
+import { cookie } from './context/cookie'
+import { body } from './context/body'
+import { text } from './context/text'
+import { json } from './context/json'
+import { xml } from './context/xml'
+import { delay } from './context/delay'
+import { fetch } from './context/fetch'
+import { resolveRelativeUrl } from './utils/resolveRelativeUrl'
 
 export enum RESTMethods {
   GET = 'GET',
@@ -60,7 +60,7 @@ const createRESTHandler = (method: RESTMethods) => {
   }
 }
 
-export default {
+const rest = {
   get: createRESTHandler(RESTMethods.GET),
   post: createRESTHandler(RESTMethods.POST),
   put: createRESTHandler(RESTMethods.PUT),
@@ -68,3 +68,5 @@ export default {
   patch: createRESTHandler(RESTMethods.PATCH),
   options: createRESTHandler(RESTMethods.OPTIONS),
 }
+
+export { rest }
